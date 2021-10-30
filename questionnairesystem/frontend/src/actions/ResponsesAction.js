@@ -7,9 +7,15 @@ export const getResponses = () => dispatch => {
     .then(resp => {
       dispatch({
         type: GET_RESPONSES,
-        payload: resp.data
+        payload: {success: true, fail: false, data: resp.data}
       })
-    }).catch(err => console.log(err))
+    }).catch(err => {
+      dispatch({
+        type: GET_RESPONSES,
+        payload: {success: false, fail: true, data: err}
+      })
+      console.log(err)
+    })
 }
 
 // Delete response
@@ -17,10 +23,10 @@ export const deleteResponse = (id) => dispatch => {
   // console.log("delete id", id)
   axios.delete(`/api/questionnaire/${id}/`)
     .then(resp => {
-      console.log("delete response", resp)
+      // console.log("delete response", resp)
       dispatch({
         type: DELETE_RESPONSE,
-        payload: id
+        payload: {success: true, fail: false, data: id}
       })
     }).catch(err => console.log(err))
 }
@@ -32,9 +38,15 @@ export const createResponse = (data) => dispatch => {
     .then(resp => {
       dispatch({
         type: CREATE_RESPONSE,
-        payload: resp
+        payload: {success: true, fail: false, data: resp}
       })
-    }).catch(err => console.log(err))
+    }).catch(err => {
+      console.log(err)
+      dispatch({
+        type: CREATE_RESPONSE,
+        payload: {success: false, fail: true, data: err}
+      })
+    })
 }
 
 // Fetch response
@@ -45,9 +57,15 @@ export const fetchByIdResponse = (id) => dispatch => {
       // console.log("fetch by id response", resp.data)
       dispatch({
         type: FETCH_BY_ID_RESPONSE,
-        payload: resp.data
+        payload: {success: true, fail: false, data: resp.data}
       })
-    }).catch(err => console.log(err))
+    }).catch(err => {
+      console.log(err)
+      dispatch({
+        type: FETCH_BY_ID_RESPONSE,
+        payload: {success: false, fail: true, data: err}
+      })
+    })
 }
 
 // Update response
@@ -57,9 +75,15 @@ export const updateResponse = (id, data) => dispatch => {
     .then(resp => {
       dispatch({
         type: UPDATE_RESPONSE,
-        payload: id
+        payload: {success: true, fail: false, data: resp}
       })
-    }).catch(err => console.log(err))
+    }).catch(err => {
+      console.log(err)
+      dispatch({
+        type: UPDATE_RESPONSE,
+        payload: {success: false, fail: true, data: err}
+      })
+    })
 }
 
 // Reset reducer

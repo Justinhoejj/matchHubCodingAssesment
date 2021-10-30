@@ -1,83 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
+import { colorOptions, programmingLanguageOptions, spokenLanguagesOptions } from './QuestionnaireFormOptions'
 
 export const QuestionnaireForm = (props) => {
-  const [colorOptions, setColorOptions] = useState(
-    [{
-      id: 1,
-      label: "Blue",
-      value: "Blue",
-    }, {
-      id: 2,
-      label: "Red",
-      value: "Red",
-    }, {
-      id: 3,
-      label: "Green",
-      value: "Green",
-    }, {
-      id: 4,
-      label: "Yellow",
-      value: "Yellow",
-    }, {
-      id: 5,
-      label: "Purple",
-      value: "Purple",
-    }, {
-      id: 6,
-      label: "Pink",
-      value: "Pink",
-    }
-    ])
-  const [programmingLanguageOptions, setProgrammingLanguageOptions] = useState(
-    [{
-      id: 7,
-      label: "Python",
-      value: "Python",
-    }, {
-      id: 8,
-      label: "Java",
-      value: "Java",
-    }, {
-      id: 9,
-      label: "Ruby",
-      value: "Ruby",
-    }, {
-      id: 10,
-      label: "Javascript",
-      value: "Javascript",
-    }, {
-      id: 11,
-      label: "Golang",
-      value: "Golang",
-    }])
-
-  const [spokenLanguages, setSpokenLanguages] = useState(
-    [{
-      id: 12,
-      label: "English",
-      value: "English",
-    }, {
-      id: 13,
-      label: "Chinese",
-      value: "Chinese",
-    }, {
-      id: 14,
-      label: "Malay",
-      value: "Malay",
-    }, {
-      id: 15,
-      label: "Tamil",
-      value: "Tamil",
-    }, {
-      id: 16,
-      label: "Hindi",
-      value: "Hindi",
-    }])
 
   const [formData, setFormData] = useState(null)
   const [loaded, setLoaded] = useState(false)
 
+  // Format form data and submit
   const onSubmit = (e) => {
     e.preventDefault()
     props.handleSubmit({
@@ -89,6 +19,7 @@ export const QuestionnaireForm = (props) => {
     })
   }
 
+  // Initialise data with existing data if present
   useEffect(() => {
     const defaultData = {
       name: "",
@@ -99,11 +30,11 @@ export const QuestionnaireForm = (props) => {
     }
     if (props.defaultData != null) {
       const { name, favouriteColors, programmingLanguage, spokenLanguages, isWillingToPay } = props.defaultData
-          defaultData.name = name
-          defaultData.favouriteColors = favouriteColors.split(",")
-          defaultData.programmingLanguage = programmingLanguage
-          defaultData.spokenLanguages = spokenLanguages.split(",")
-          defaultData.isWillingToPay = isWillingToPay
+      defaultData.name = name
+      defaultData.favouriteColors = favouriteColors.split(",")
+      defaultData.programmingLanguage = programmingLanguage
+      defaultData.spokenLanguages = spokenLanguages.split(",")
+      defaultData.isWillingToPay = isWillingToPay
     }
     setFormData(() => (defaultData))
     setLoaded(() => true)
@@ -111,8 +42,9 @@ export const QuestionnaireForm = (props) => {
 
   return (
     <div>
-      {loaded &&
+      {loaded && (
         <form className="card card-body mt-4 mb-4" onSubmit={onSubmit}>
+          {/*=============== Full Name ===============*/}
           <div class="mb-3">
             <label class="form-label">What is your full name?</label>
             <input
@@ -127,8 +59,9 @@ export const QuestionnaireForm = (props) => {
               }}
             />
           </div>
+          {/*=============== Favourite Colour ===============*/}
           <div class="mb-3">
-            <label class="form-label">What is your favourite color?</label>
+            <label class="form-label">What is your favourite colour?</label>
             <div class="checkbox-group required">
               {colorOptions.map(option => (
                 <div class="form-check">
@@ -155,6 +88,7 @@ export const QuestionnaireForm = (props) => {
               ))}
             </div>
           </div>
+          {/*=============== Best Programming Language ===============*/}
           <div class="mb-3">
             <label class="form-label">What is your most familiar coding langauge?</label>
             {programmingLanguageOptions.map(option => (
@@ -175,9 +109,10 @@ export const QuestionnaireForm = (props) => {
             ))}
 
           </div>
+          {/*=============== Spoken Languages ===============*/}
           <div class="mb-3">
             <label class="form-label">What langauges below can you speak?</label>
-            {spokenLanguages.map(option => (
+            {spokenLanguagesOptions.map(option => (
               <div class="form-check">
                 <input
                   class="form-check-input"
@@ -200,6 +135,7 @@ export const QuestionnaireForm = (props) => {
               </div>
             ))}
           </div>
+          {/*=============== Willing To Pay For Resume Review ===============*/}
           <div class="mb-3">
             <label class="form-check-label">Would you pay $5 for a resume review?</label>
             <div class="mb-3 form-check">
@@ -233,7 +169,7 @@ export const QuestionnaireForm = (props) => {
           </div>
           <button class="btn btn-primary">{props.buttonName}</button>
         </form>
-      }
+      )}
     </div>
   )
 }

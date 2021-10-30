@@ -4,7 +4,7 @@ import Responses from '../components/Responses'
 function HomePage() {
   return (
     <div>
-      <Responses/>
+      <Responses />
     </div>
   )
 }

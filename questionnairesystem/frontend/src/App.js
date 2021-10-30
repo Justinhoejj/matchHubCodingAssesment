@@ -10,16 +10,16 @@ import CreateResponsePage from './pages/CreateResponsePage'
 
 
 const App = () => (
-    <Provider store={store}>
-      <Header />
-      <Router>
-        <Switch>
-          <Route exact path='/' component={HomePage} />
-          <Route exact path='/create' component={CreateResponsePage} />
-          <Route exact path='/edit' component={EditRersponsePage} />
-        </Switch>
-      </Router>
-    </Provider>
+  <Provider store={store}>
+    <Header />
+    <Router>
+      <Switch>
+        <Route exact path='/' component={HomePage} />
+        <Route exact path='/create' component={CreateResponsePage} />
+        <Route exact path='/edit' component={EditRersponsePage} />
+      </Switch>
+    </Router>
+  </Provider>
 )
 
 ReactDOM.render(<App />, document.getElementById('app'));

@@ -7,12 +7,16 @@ import QuestionnaireForm from '../components/QuestionnaireForm'
 export const CreateResponsePage = (props) => {
   
   const [redirect, setRedirect] = useState(false)
+  const [showError, setShowError] = useState(false)
 
   useEffect(() => {
     if(props.createResponseSuccess) {
       setRedirect(() => true)
     }
-  }, [props.createResponseSuccess])
+    if(props.createResponseFail) {
+      setShowError(() => true)
+    }
+  }, [props.createResponseSuccess, props.createResponseFail])
 
   useEffect(() => {
     return () => {
@@ -35,6 +39,7 @@ export const CreateResponsePage = (props) => {
 
 const mapStateToProps = (state) => ({
   createResponseSuccess: state.responsesReducer.createSuccess,
+  createResponseFail: state.responsesReducer.createFail,
 })
 
 const mapDispatchToProps = {

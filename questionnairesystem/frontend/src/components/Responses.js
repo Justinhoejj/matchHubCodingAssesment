@@ -9,46 +9,42 @@ const Responses = (props) => {
   useEffect(() => {
     props.getResponses()
   }, [])
-   
+
   useEffect(() => {
     setAllResponses(() => props.allResponses)
-  },[props.allResponses])
+  }, [props.allResponses])
 
   return (
     <div className="container-fluid">
-      <h2>Responses</h2>
+      <h3>Responses</h3>
       <table className="table table-striped">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Name</th>
             <th>Favourite Color</th>
             <th>Coding Languages</th>
             <th>Spoken Languages</th>
             <th>Would Pay for Resume Review</th>
-            <th />
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {allResponses.map(response => (
             <tr key={response.id}>
-              <td>{response.id}</td>
               <td>{response.name}</td>
-              <td>{response.favouriteColor}</td>
-              <td>{response.familiarCodingLanguages}</td>
-              <td>{response.spokenLanguages}</td>
-              <td>{response.isWillingToPay ? "yes" : "no"}</td>
+              <td>{response.favouriteColors.replace(/,/g, ", ")}</td>
+              <td>{response.programmingLanguage}</td>
+              <td>{response.spokenLanguages.replace(/,/g, ", ")}</td>
+              <td>{response.isWillingToPay ? "Yes" : "No"}</td>
               <td>
                 <Link to={`/edit?id=${response.id}`}>
-              <button className="btn btn-warning btn-sm">
-                  Edit
-              </button>
-              </Link>
-              </td>
-              <td>
-                <button 
-                className="btn btn-danger btn-sm"
-                onClick={() => props.deleteResponse(response.id)}
+                  <button className="btn btn-warning btn-sm">
+                    Edit
+                  </button>
+                </Link>
+                <button
+                  className="btn btn-danger btn-sm"
+                  onClick={() => props.deleteResponse(response.id)}
                 >
                   Delete
                 </button>

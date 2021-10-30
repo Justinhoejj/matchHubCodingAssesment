@@ -1,9 +1,67 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
+import { getResponses, deleteResponse } from '../actions/ResponsesAction'
 
-export default function Responses() {
+const Responses = (props) => {
+  const [allResponses, setAllResponses] = useState([]);
+
+  useEffect(() => {
+    props.getResponses()
+  }, [])
+   
+  useEffect(() => {
+    setAllResponses(() => props.allResponses)
+  },[props.allResponses])
+
   return (
     <div>
-      <h1>List of responses</h1>
+      <h2>Responses</h2>
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Favourite Color</th>
+            <th>Coding Languages</th>
+            <th>Spoken Languages</th>
+            <th>Would Pay for Resume Review</th>
+            <th />
+          </tr>
+        </thead>
+        <tbody>
+          {allResponses.map(response => (
+            <tr key={response.id}>
+              <td>{response.id}</td>
+              <td>{response.name}</td>
+              <td>{response.favouriteColor}</td>
+              <td>{response.familiarCodingLanguages}</td>
+              <td>{response.spokenLanguages}</td>
+              <td>{response.isWillingToPay ? "yes" : "no"}</td>
+              <td>
+              <button className="btn btn-warning btn-sm">
+                  Edit
+                </button>
+              </td>
+              <td>
+                <button 
+                className="btn btn-danger btn-sm"
+                onClick={() => 
+                  props.deleteResponse(response.id)
+                }
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   )
 }
+const mapStateToProps = state => ({
+  fetchAllResponsesSuccess: state.responsesReducer.fetchAllResponsesSuccess,
+  allResponses: state.responsesReducer.responses
+})
+
+export default connect(mapStateToProps, { getResponses, deleteResponse })(Responses)

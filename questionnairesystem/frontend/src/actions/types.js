@@ -1,0 +1,2 @@
+export const GET_RESPONSES = "GET_RESPONSES"
+export const DELETE_RESPONSE = "DELETE_RESPONSE"

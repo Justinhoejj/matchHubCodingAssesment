@@ -44,6 +44,7 @@ export default function ResponsesReducer(state = initialState, action) {
       return {
         ...state,
         updateSuccess: action.payload.success,
+        updateFail: action.payload.fail
       }
     case RESET_RESPONSE_REDUCER:
       return {

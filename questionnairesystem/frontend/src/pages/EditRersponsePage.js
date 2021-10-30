@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 import { updateResponse, resetReducer, fetchByIdResponse } from '../actions/ResponsesAction'
+import Alerts from '../components/layout/Alerts'
 import { QuestionnaireForm } from '../components/QuestionnaireForm'
 
 export const EditRersponsePage = (props) => {
@@ -9,7 +10,7 @@ export const EditRersponsePage = (props) => {
   const [existingFormData, setExistingFormData] = useState({})
   const [loaded, setLoaded] = useState(false)
   const [redirect, setRedirect] = useState(false)
-
+  const [showError, setShowError] = useState(false)
 
   useEffect(() => {
     props.fetchByIdReponse(idToEdit)
@@ -32,11 +33,19 @@ export const EditRersponsePage = (props) => {
     if(props.editResponseSuccess) {
       setRedirect(() => true)
     }
-    
-  }, [props.editResponseSuccess])
+    if(props.editResponseFail) {
+      setShowError(() => true)
+      props.resetReducer()
+    }
+  }, [props.editResponseSuccess, props.editResponseFail])
 
   return (
     <div>
+      <Alerts
+        displayAlert={showError}
+        onClose={() => setShowError(() => false)}
+        alertMessage={"Please complete questions before saving"}
+      />
       {loaded && (
         <QuestionnaireForm
           buttonName="Save"
@@ -51,6 +60,7 @@ export const EditRersponsePage = (props) => {
 
 const mapStateToProps = (state) => ({
   editResponseSuccess: state.responsesReducer.updateSuccess,
+  editResponseFail: state.responsesReducer.updateFail,
   fetchByIdResponseSuccess: state.responsesReducer.fetchByIdSuccess,
   fetchByIdResponseData: state.responsesReducer.fetchByIdData
 })

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom';
 import { getResponses, deleteResponse } from '../actions/ResponsesAction'
 
 const Responses = (props) => {
@@ -38,9 +39,11 @@ const Responses = (props) => {
               <td>{response.spokenLanguages}</td>
               <td>{response.isWillingToPay ? "yes" : "no"}</td>
               <td>
+                <Link to={`/edit?id=${response.id}`}>
               <button className="btn btn-warning btn-sm">
                   Edit
-                </button>
+              </button>
+              </Link>
               </td>
               <td>
                 <button 

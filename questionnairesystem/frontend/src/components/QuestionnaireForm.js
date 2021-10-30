@@ -29,7 +29,7 @@ export const QuestionnaireForm = (props) => {
       value: "Pink",
     }
     ])
-  const [programingLanguageOptions, setProgramingLanguageOptions] = useState(
+  const [programmingLanguageOptions, setProgrammingLanguageOptions] = useState(
     [{
       id: 7,
       label: "Python",
@@ -52,7 +52,7 @@ export const QuestionnaireForm = (props) => {
       value: "Golang",
     }])
 
-  const [spokenlanguages, setSpokenlanguages] = useState(
+  const [spokenLanguages, setSpokenLanguages] = useState(
     [{
       id: 12,
       label: "English",
@@ -79,19 +79,20 @@ export const QuestionnaireForm = (props) => {
     {
       name: "",
       favouriteColors: [],
-      programingLanguage: "",
-      spokenlanguages: [],
+      programmingLanguage: "",
+      spokenLanguages: [],
       isWillingToPay: false,
     })
 
   const onSubmit = (e) => {
     e.preventDefault()
+    console.log("submit button pressed")
     props.handleSubmit({
       name: formData.name,
       favouriteColors: formData.favouriteColors.join(","),
-      programingLanguage: formData.programingLanguage,
-      spokenlanguages: formData.spokenlanguages.join(","),
-      isWillingToPay: formData.isWillingToPay,
+      programmingLanguage: formData.programmingLanguage,
+      spokenLanguages: formData.spokenLanguages.join(","),
+      isWillingToPay: formData.isWillingToPay == "true",
     })
   }
 
@@ -140,7 +141,7 @@ export const QuestionnaireForm = (props) => {
         </div>
         <div class="mb-3">
           <label class="form-label">What is your most familiar coding langauge?</label>
-          {programingLanguageOptions.map(option => (
+          {programmingLanguageOptions.map(option => (
             <div class="mb-3 form-check">
               <input
                 class="form-check-input"
@@ -149,7 +150,7 @@ export const QuestionnaireForm = (props) => {
                 key={option.id}
                 value={option.value}
                 onChange={(e) => {
-                  setFormData(prev => ({ ...prev, programingLanguage: e.target.value }))
+                  setFormData(prev => ({ ...prev, programmingLanguage: e.target.value }))
                 }}
               />
               <label class="form-check-label" key={option.label}>{option.label}</label>
@@ -159,7 +160,7 @@ export const QuestionnaireForm = (props) => {
         </div>
         <div class="mb-3">
           <label class="form-label">What langauges below can you speak?</label>
-          {spokenlanguages.map(option => (
+          {spokenLanguages.map(option => (
             <div class="form-check">
               <input
                 class="form-check-input"
@@ -168,13 +169,13 @@ export const QuestionnaireForm = (props) => {
                 key={option.id}
                 onChange={(e) => {
                   const isChecked = e.target.checked
-                  const languages = formData.spokenlanguages
+                  const languages = formData.spokenLanguages
                   if (isChecked) {
                     languages.push(e.target.value)
                   } else {
                     languages.pop(e.target.value)
                   }
-                  setFormData(prev => ({ ...prev, spokenlanguages: languages }))
+                  setFormData(prev => ({ ...prev, spokenLanguages: languages }))
                 }}
               />
               <label class="form-check-label" key={option.label}>{option.label}</label>

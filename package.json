@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development ./questionnairesystem/frontend/src/index.js -o ./questionnairesystem/frontend/static/frontend/",
+    "dev": "webpack --mode development --watch ./questionnairesystem/frontend/src/index.js -o ./questionnairesystem/frontend/static/frontend/",
     "build": "webpack --mode development ./questionnairesystem/frontend/src/index.js -o ./questionnairesystem/frontend/static/frontend/"
   },
   "keywords": [],

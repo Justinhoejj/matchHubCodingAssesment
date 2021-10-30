@@ -1,9 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Header from './components/layout/Header'
+import Dashboard from './components/Dashboard'
 
 const App = () => (
-  <div className="App">
-    <h1>Heloo</h1>
+  <div>
+    <Header />
+    <Dashboard />
   </div>
 )
 

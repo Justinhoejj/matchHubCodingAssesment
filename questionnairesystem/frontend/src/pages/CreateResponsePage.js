@@ -4,9 +4,16 @@ import QuestionnaireForm from '../components/QuestionnaireForm'
 
 export const CreateResponsePage = (props) => {
   
+  const createNew = (formData) => {
+    console.log(formData)
+  }
   return (
     <div className="container-sm">
-      <QuestionnaireForm />
+      <h2>Create New Response</h2>
+      <QuestionnaireForm 
+        buttonName="beep"
+        handleSubmit={createNew}
+      />
     </div>
   )
 }

@@ -14,7 +14,7 @@ const Responses = (props) => {
   },[props.allResponses])
 
   return (
-    <div>
+    <div className="container-fluid">
       <h2>Responses</h2>
       <table className="table table-striped">
         <thead>
@@ -45,9 +45,7 @@ const Responses = (props) => {
               <td>
                 <button 
                 className="btn btn-danger btn-sm"
-                onClick={() => 
-                  props.deleteResponse(response.id)
-                }
+                onClick={() => props.deleteResponse(response.id)}
                 >
                   Delete
                 </button>
@@ -59,9 +57,15 @@ const Responses = (props) => {
     </div>
   )
 }
+
 const mapStateToProps = state => ({
   fetchAllResponsesSuccess: state.responsesReducer.fetchAllResponsesSuccess,
   allResponses: state.responsesReducer.responses
 })
 
-export default connect(mapStateToProps, { getResponses, deleteResponse })(Responses)
+const mapDispatchToProps = {
+  getResponses: getResponses,
+  deleteResponse: deleteResponse,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Responses)

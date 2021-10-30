@@ -14,12 +14,19 @@ export const CreateResponsePage = (props) => {
     }
   }, [props.createResponseSuccess])
 
+  useEffect(() => {
+    return () => {
+      props.resetReducer()
+    }
+  },[])
+
   return (
     <div className="container-sm">
       <h2>Create New Response</h2>
       <QuestionnaireForm 
         buttonName="Submit"
         handleSubmit={props.createResponse}
+        defaultData={null}
       />
       {redirect && <Redirect to="/"/>}
     </div>

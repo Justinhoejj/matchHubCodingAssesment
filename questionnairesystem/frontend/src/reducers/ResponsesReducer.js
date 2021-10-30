@@ -1,9 +1,11 @@
-import { GET_RESPONSES, DELETE_RESPONSE, CREATE_RESPONSE, UPDATE_RESPONSE, RESET_RESPONSE_REDUCER } from "../actions/types.js"
+import { GET_RESPONSES, DELETE_RESPONSE, CREATE_RESPONSE, UPDATE_RESPONSE, FETCH_BY_ID_RESPONSE, RESET_RESPONSE_REDUCER } from "../actions/types.js"
 
 const initialState = {
   fetchAllResponsesSuccess: false,
   createSuccess: false,
   updateSuccess: false,
+  fetchByIdSuccess: false,
+  fetchByIdData: {},
   responses: []
 }
 export default function ResponsesReducer(state = initialState, action) {
@@ -27,6 +29,13 @@ export default function ResponsesReducer(state = initialState, action) {
         ...state,
         createSuccess: true,
       }
+    case FETCH_BY_ID_RESPONSE:
+      // console.log("Fetch by id response", action.payload)
+      return {
+        ...state,
+        fetchByIdSuccess: true,
+        fetchByIdData: action.payload
+      }
     case UPDATE_RESPONSE:
       // console.log("Update response", action.payload)
       return {
@@ -38,6 +47,8 @@ export default function ResponsesReducer(state = initialState, action) {
         fetchAllResponsesSuccess: false,
         createSuccess: false,
         updateSuccess: false,
+        fetchByIdSuccess: false,
+        fetchByIdData: {},
         responses: []
       }
     default:

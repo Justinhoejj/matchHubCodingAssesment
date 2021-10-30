@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_RESPONSES, DELETE_RESPONSE, CREATE_RESPONSE, UPDATE_RESPONSE } from "./types";
+import { GET_RESPONSES, DELETE_RESPONSE, CREATE_RESPONSE, UPDATE_RESPONSE, FETCH_BY_ID_RESPONSE, RESET_RESPONSE_REDUCER } from "./types";
 
 // Get responses
 export const getResponses = () => dispatch => {
@@ -25,9 +25,9 @@ export const deleteResponse = (id) => dispatch => {
     }).catch(err => console.log(err))
 }
 
-// Crease response
+// Create response
 export const createResponse = (data) => dispatch => {
-  console.log("create response", data)
+  // console.log("create response", data)
   axios.post(`/api/questionnaire/`, data)
     .then(resp => {
       dispatch({
@@ -37,9 +37,22 @@ export const createResponse = (data) => dispatch => {
     }).catch(err => console.log(err))
 }
 
+// Fetch response
+export const fetchByIdResponse = (id) => dispatch => {
+  // console.log("fetch by id response", id)
+  axios.get(`/api/questionnaire/${id}/`)
+    .then(resp => {
+      // console.log("fetch by id response", resp.data)
+      dispatch({
+        type: FETCH_BY_ID_RESPONSE,
+        payload: resp.data
+      })
+    }).catch(err => console.log(err))
+}
+
 // Update response
 export const updateResponse = (id, data) => dispatch => {
-  console.log("update response", data)
+  // console.log("update response", data)
   axios.put(`/api/questionnaire/${id}/`, data)
     .then(resp => {
       dispatch({
@@ -52,7 +65,7 @@ export const updateResponse = (id, data) => dispatch => {
 // Reset reducer
 export const resetReducer = () => dispatch => {
       dispatch({
-        type: UPDATE_RESPONSE,
+        type: RESET_RESPONSE_REDUCER,
         payload: null
       })
 }

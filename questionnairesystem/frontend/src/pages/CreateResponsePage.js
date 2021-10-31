@@ -12,14 +12,17 @@ export const CreateResponsePage = (props) => {
 
   useEffect(() => {
     if(props.createResponseSuccess) {
+      // on successful submit redirect to homepage
       setRedirect(() => true)
     }
     if(props.createResponseFail) {
+      // on submit fail display error message
       setShowError(() => true)
       props.resetReducer()
     }
   }, [props.createResponseSuccess, props.createResponseFail])
 
+  // reset reducer when exiting component
   useEffect(() => {
     return () => {
       props.resetReducer()

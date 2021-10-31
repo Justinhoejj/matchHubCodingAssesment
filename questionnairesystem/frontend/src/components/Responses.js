@@ -6,13 +6,17 @@ import { getResponses, deleteResponse } from '../actions/ResponsesAction'
 const Responses = (props) => {
   const [allResponses, setAllResponses] = useState([]);
 
+  // Get all responses from backend
   useEffect(() => {
     props.getResponses()
   }, [])
 
+  // Set responses to be displayed if fetch successful
   useEffect(() => {
-    setAllResponses(() => props.allResponses)
-  }, [props.allResponses])
+    if (props.fetchAllResponsesSuccess) {
+      setAllResponses(() => props.allResponses)
+    }
+  }, [props.fetchAllResponsesSuccess, props.allResponses])
 
   return (
     <div className="container-fluid">
@@ -29,6 +33,7 @@ const Responses = (props) => {
           </tr>
         </thead>
         <tbody>
+          {/*=============== Display Each Response ===============*/}
           {allResponses.map(response => (
             <tr key={response.id}>
               <td>{response.name}</td>

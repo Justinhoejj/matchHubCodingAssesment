@@ -1,7 +1,7 @@
 import React from 'react'
 import Responses from '../components/Responses'
 
-function HomePage() {
+export const HomePage = () => {
   return (
     <div>
       <Responses />

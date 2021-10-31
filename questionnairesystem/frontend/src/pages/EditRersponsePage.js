@@ -12,18 +12,14 @@ export const EditRersponsePage = (props) => {
   const [redirect, setRedirect] = useState(false)
   const [showError, setShowError] = useState(false)
 
+  // initialise existing data of seleted response
   useEffect(() => {
     props.fetchByIdReponse(idToEdit)
   }, [])
 
   useEffect(() => {
-    return () => {
-      props.resetReducer()
-    }
-  },[])
-
-  useEffect(() => {
     if (props.fetchByIdResponseSuccess) {
+      // Set default data if fetch successful
       setExistingFormData(() => props.fetchByIdResponseData)
       setLoaded(() => true)
     }
@@ -31,13 +27,22 @@ export const EditRersponsePage = (props) => {
 
   useEffect(() => {
     if(props.editResponseSuccess) {
+      // on successful submit redirect to homepage
       setRedirect(() => true)
     }
     if(props.editResponseFail) {
+      // on submit fail display error message
       setShowError(() => true)
       props.resetReducer()
     }
   }, [props.editResponseSuccess, props.editResponseFail])
+
+  // reset reducer when exiting component
+  useEffect(() => {
+    return () => {
+      props.resetReducer()
+    }
+  },[])
 
   return (
     <div>

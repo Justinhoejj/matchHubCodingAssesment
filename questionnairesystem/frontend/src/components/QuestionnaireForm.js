@@ -19,7 +19,7 @@ export const QuestionnaireForm = (props) => {
     })
   }
 
-  // Initialise data with existing data if present
+  // Initialise form with existing data if present
   useEffect(() => {
     const defaultData = {
       name: "",

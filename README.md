@@ -24,17 +24,14 @@ You will require node.js and python3 to run this application. Follow the guides 
    ```sh
    git clone https://github.com/Justinhoejj/matchHubCodingAssesment.git
    ```
+   ```sh
+   cd matchHubCodingAssessment
+   ```
 2. Install NPM packages
    ```sh
    npm install
    ```
-3. Configure babel
-   Create `.babelrc` in the root folder and fill it with the code snippet below
-   ```babelrc
-   {"presets": ["@babel/preset-env", "@babel/preset-react"],
-    "plugins": ["transform-class-properties"]}
-   ```
-4. Build application in in questionnairesystem     
+3. Build application in questionnairesystem     
    From the root folder:
    ```sh
    cd questionnairesystem
@@ -42,12 +39,12 @@ You will require node.js and python3 to run this application. Follow the guides 
    ```sh
    npm run build
    ```
-5. Run application
+4. Run application
    ```sh
    python3 manage.py runserver
    ```
 
-Application should be hosted on localhost port 8000 http://127.0.0.1:8000/
+Application should be hosted on localhost port 8000 http://127.0.0.1:8000/ .
 
 ## Usage
 

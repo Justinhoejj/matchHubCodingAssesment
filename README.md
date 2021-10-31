@@ -1,8 +1,9 @@
-# matchHubCodingAssesment
+# Match Hub Coding Assesment
+![](https://github.com/Justinhoejj/matchHubCodingAssesment/blob/main/QuestionnaireSystemUI.jpg)
 
 ### Built With
 * [React.js](https://reactjs.org/)
-* [django](https://www.djangoproject.com/)
+* [Django](https://www.djangoproject.com/)
 * [Bootstrap](https://getbootstrap.com)
 
 <!-- GETTING STARTED -->
@@ -28,25 +29,26 @@ You will require node.js and python3 to run this application. Follow the guides 
    npm install
    ```
 3. Configure babel
-   Create .babelrc in the root folder and paste the code snippet below
-   ```{
-  "presets": ["@babel/preset-env", "@babel/preset-react"],
-  "plugins": ["transform-class-properties"]
-   }
+   Create `.babelrc` in the root folder and fill it with the code snippet below
+   ```babelrc
+   {"presets": ["@babel/preset-env", "@babel/preset-react"],
+    "plugins": ["transform-class-properties"]}
    ```
 4. Build application in in questionnairesystem     
    From the root folder:
-   ```cd questionnairesystem
+   ```sh
+   cd questionnairesystem
    ```
-   ```npm run build
+   ```sh
+   npm run build
    ```
 5. Run application
-   ```python3 manage.py runserver
+   ```sh
+   python3 manage.py runserver
    ```
 
 Application should be hosted on localhost port 8000 http://127.0.0.1:8000/
 
-<!-- USAGE EXAMPLES -->
 ## Usage
 
 Create a new response or view all responses by nagivating through the header. 
@@ -54,4 +56,4 @@ Create a new response or view all responses by nagivating through the header.
 To edit an existing response click edit on the target response in view all responses tab.
 To delete an existing response click delete on the target reponse in view all responses tab.
 
-**Note: All questions must be answered before submiting or saving.
+>**Note**: All questions must be answered before submiting or saving.

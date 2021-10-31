@@ -29,23 +29,19 @@ You will require node.js and python3 to run this application. Follow the guides 
    ```
 3. Configure babel
    Create .babelrc in the root folder and paste the code snippet below
-   ```
-   {
+   ```{
   "presets": ["@babel/preset-env", "@babel/preset-react"],
   "plugins": ["transform-class-properties"]
    }
    ```
 4. Build application in in questionnairesystem     
    From the root folder:
+   ```cd questionnairesystem
    ```
-   cd questionnairesystem
-   ```
-   ```
-   npm run build
+   ```npm run build
    ```
 5. Run application
-   ```
-   python3 manage.py runserver
+   ```python3 manage.py runserver
    ```
 
 Application should be hosted on localhost port 8000 http://127.0.0.1:8000/

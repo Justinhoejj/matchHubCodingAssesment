@@ -24,9 +24,9 @@ const Responses = (props) => {
       <table className="table table-striped">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Favourite Color</th>
-            <th>Coding Languages</th>
+            <th>Name Name</th>
+            <th>Favourite Colours</th>
+            <th>Best Coding Language</th>
             <th>Spoken Languages</th>
             <th>Would Pay for Resume Review</th>
             <th>Actions</th>
